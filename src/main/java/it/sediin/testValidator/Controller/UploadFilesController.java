@@ -4,35 +4,66 @@ package it.sediin.testValidator.Controller;
 import it.sediin.testValidator.Entities.UploadFiles;
 import it.sediin.testValidator.Entities.User;
 import it.sediin.testValidator.Service.UploadFilesService;
+import it.sediin.testValidator.Validator.ConditionalUploadFiles;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
-@RestController
-public class UploadFilesController {
+import javax.validation.Valid;
 
-    @Autowired
-    private UploadFilesService uploadFiles;
+@RestController
+@Validated
+public class UploadFilesController {
 
     @Autowired
     UploadFilesService fileUploadService;
 
 
+    private boolean isSupportedContentType(String contentType) {
+        return contentType.equals("text/xml")
+                || contentType.equals("application/pdf")
+                || contentType.equals("image/png")
+                || contentType.equals("image/jpg")
+                || contentType.equals("image/jpeg");
+    }
 
 
     @PostMapping("/uploadFC")
-    public ResponseEntity<String> uploadFiles(@RequestParam("documents") MultipartFile[] files, UploadFiles uploadFiles) {
+    public ResponseEntity<String> uploadFiles(@RequestParam("documents") @Valid @ConditionalUploadFiles MultipartFile documents) throws Exception {
+//        for (MultipartFile f : files) {
+//        if (f.isEmpty() || f.getSize() == 0) {
+//             throw new Exception();
+//           }
+//        }
+
+//        if(!isSupportedContentType(documents.getContentType())){
+//            throw new Exception("unsupported media type");
+//        }
+
         try {
-            fileUploadService.store(uploadFiles.setDocuments2(files));
+            fileUploadService.store(documents);
             return ResponseEntity.ok("Files uploaded successfully!");
         } catch (Exception e) {
             return ResponseEntity.status(500).body("Failed to upload files: " + e.getMessage());
         }
     }
+}
+
+
+//    @PostMapping("/uploadFC")
+//    public ResponseEntity<String> uploadFiles(@RequestParam("documents") MultipartFile[] files, UploadFiles uploadFiles) {
+//        try {
+//            fileUploadService.store(uploadFiles.setDocuments2(files));
+//            return ResponseEntity.ok("Files uploaded successfully!");
+//        } catch (Exception e) {
+//            return ResponseEntity.status(500).body("Failed to upload files: " + e.getMessage());
+//        }
+//    }
 
 
 //funziona
@@ -50,4 +81,4 @@ public class UploadFilesController {
 
 
 
-}
+

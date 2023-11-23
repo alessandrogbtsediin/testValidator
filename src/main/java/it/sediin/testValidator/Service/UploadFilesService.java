@@ -20,14 +20,14 @@ public class UploadFilesService {
 
     private final Path rootLocation = Paths.get(System.getProperty("user.home") + File.separator + "Desktop"+ File.separator+ "files");
 
-    public void store(MultipartFile[] files) throws IOException {
-        for (MultipartFile file : files) {
-            try{
-                Files.copy(file.getInputStream(), this.rootLocation.resolve(Objects.requireNonNull(file.getOriginalFilename())));
-            }catch (Exception e){
-                e.getMessage();
+    public void store(MultipartFile files) throws IOException {
+//        for (MultipartFile file : files) {
+            try {
+                Files.copy(files.getInputStream(), this.rootLocation.resolve(Objects.requireNonNull(files.getOriginalFilename())));
+            } catch (Exception e) {
+                throw new IOException("Error saving file: " + files.getOriginalFilename(), e);
             }
-
         }
     }
-}
+
+//}
