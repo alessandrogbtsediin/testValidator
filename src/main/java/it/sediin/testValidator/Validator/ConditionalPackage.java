@@ -21,12 +21,10 @@ import javax.validation.*;
 
 
 @Target({ ElementType.TYPE, ElementType.FIELD, ElementType.METHOD })
-
 @Constraint(validatedBy = ConditionalPackageValidatorForClass.class)
-//@Target({ ElementType.PARAMETER, ElementType.METHOD })
 @Retention(RetentionPolicy.RUNTIME)
 public @interface ConditionalPackage {
-    String message() default  "If you buy something you have to provide an address";
+    String message() default  "default error";
     Class<?>[] groups() default {};
     Class<? extends Payload>[] payload() default {};
 }

@@ -9,7 +9,9 @@ import javax.validation.ConstraintValidatorContext;
 
 
 
-se HasBought true E getAddress è null or empty
+questo overrida @valid x la classe User,
+setto il template di errore in .buildconstrainttemplate
+setto a quale proprieta deve essere bindato l'errore con .addpropertynode("address" e controlla dentro la classse il valore address
 
 
 context.disableDefaultConstraintViolation(); = disabilito il text di default x mandare il mio custom
@@ -26,19 +28,33 @@ return false = indica che la validation failed
 
 public class ConditionalPackageValidatorForClass implements ConstraintValidator<ConditionalPackage, User> {
 
-
-
     @Override
     public boolean isValid(User user, ConstraintValidatorContext context) {
-        if (user.getHasBought() && (user.getAddress() == null || user.getAddress().isEmpty())) {
-            context.disableDefaultConstraintViolation();
-            context.buildConstraintViolationWithTemplate(context.getDefaultConstraintMessageTemplate())
-                    .addPropertyNode("address")
-                    .addConstraintViolation();
-            return false;
+        boolean isValid = true;
+        if (user.getHasBought()) {
+            if (user.getAddress() == null || user.getAddress().isEmpty()) {
+                context.buildConstraintViolationWithTemplate("If you buy something you have to provide an address")
+                        .addPropertyNode("address")
+                        .addConstraintViolation();
+                isValid = false;
+            }
+
+            if (user.getCreditCard() == null || user.getCreditCard().isEmpty()) {
+                context.buildConstraintViolationWithTemplate("If you buy something you have to provide a credit card")
+                        .addPropertyNode("creditCard")
+                        .addConstraintViolation();
+                isValid = false;
+            }
+//
+//            if (!isValid) {
+//                context.disableDefaultConstraintViolation();
+//            }
         }
-        return true;
+
+        return isValid;
     }
+
+
 
 
 
