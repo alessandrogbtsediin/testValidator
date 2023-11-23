@@ -28,6 +28,24 @@ public class UploadFilesService {
                 throw new IOException("Error saving file: " + files.getOriginalFilename(), e);
             }
         }
+
+
+
+    public void storeMultipleFiles(MultipartFile[] files) throws IOException {
+        for (MultipartFile file : files) {
+            try {
+                if (file.isEmpty()) {
+                    continue; // Skip empty
+                }
+                Files.copy(file.getInputStream(), this.rootLocation.resolve(Objects.requireNonNull(file.getOriginalFilename())));
+            } catch (Exception e) {
+                throw new IOException("Error saving file: " + file.getOriginalFilename(), e);
+            }
+        }
+    }
+
+
+
     }
 
 //}

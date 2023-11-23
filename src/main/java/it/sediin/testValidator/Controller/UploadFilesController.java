@@ -5,6 +5,7 @@ import it.sediin.testValidator.Entities.UploadFiles;
 import it.sediin.testValidator.Entities.User;
 import it.sediin.testValidator.Service.UploadFilesService;
 import it.sediin.testValidator.Validator.ConditionalUploadFiles;
+import it.sediin.testValidator.Validator.ConditionalUploadMultipleFiles;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
@@ -35,15 +36,6 @@ public class UploadFilesController {
 
     @PostMapping("/uploadFC")
     public ResponseEntity<String> uploadFiles(@RequestParam("documents") @Valid @ConditionalUploadFiles MultipartFile documents) throws Exception {
-//        for (MultipartFile f : files) {
-//        if (f.isEmpty() || f.getSize() == 0) {
-//             throw new Exception();
-//           }
-//        }
-
-//        if(!isSupportedContentType(documents.getContentType())){
-//            throw new Exception("unsupported media type");
-//        }
 
         try {
             fileUploadService.store(documents);
@@ -52,6 +44,26 @@ public class UploadFilesController {
             return ResponseEntity.status(500).body("Failed to upload files: " + e.getMessage());
         }
     }
+
+    @PostMapping("/uploadFCMulti")
+    public ResponseEntity<String> uploadFilesMulti(@RequestParam("documents") @Valid @ConditionalUploadMultipleFiles MultipartFile[] documents) throws Exception {
+
+        try {
+
+            fileUploadService.storeMultipleFiles(documents);
+
+            return ResponseEntity.ok("Files uploaded successfully!");
+        } catch (Exception e) {
+            return ResponseEntity.status(500).body("Failed to upload files: " + e.getMessage());
+        }
+    }
+
+
+
+
+
+
+
 }
 
 
