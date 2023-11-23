@@ -13,6 +13,7 @@ public class ConditionalUploadFilesValidator implements ConstraintValidator<Cond
     @Override
     public boolean isValid(UploadFiles uploadFiles, ConstraintValidatorContext context) {
 
+
         if (uploadFiles.getDocuments() == null || uploadFiles.getDocuments().length < 1) {
             context.buildConstraintViolationWithTemplate("You have to upload at least 1 file")
                     .addPropertyNode("documents")
@@ -24,7 +25,7 @@ public class ConditionalUploadFilesValidator implements ConstraintValidator<Cond
 
         for (MultipartFile file : uploadFiles.getDocuments()) {
             if (file.isEmpty() || file.getSize() <= 0) {
-                context.buildConstraintViolationWithTemplate("One or more file(s) are empty or has invalid size")
+                context.buildConstraintViolationWithTemplate("One or more file(s) are empty or have invalid size")
                         .addPropertyNode("documents")
                         .addConstraintViolation();
                 isValid = false;
