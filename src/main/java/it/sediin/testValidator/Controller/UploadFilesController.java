@@ -49,9 +49,7 @@ public class UploadFilesController {
     public ResponseEntity<String> uploadFilesMulti(@RequestParam("documents") @Valid @ConditionalUploadMultipleFiles MultipartFile[] documents) throws Exception {
 
         try {
-
             fileUploadService.storeMultipleFiles(documents);
-
             return ResponseEntity.ok("Files uploaded successfully!");
         } catch (Exception e) {
             return ResponseEntity.status(500).body("Failed to upload files: " + e.getMessage());
