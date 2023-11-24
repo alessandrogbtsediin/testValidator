@@ -46,3 +46,15 @@ String phoneRegex = "^\\d{10}$";
   controller che riceve multipart[] e controlla che:
    ci sia almeno un file
    validazione per vedere se ci sono file con length(kb) di 0 o con type diverso da pdf e images
+
+
+
+   crea pagina per la cookie policy x progetto ospedale
+
+
+
+
+   Con annotation
+   -validazione condizionale per validate un range di date valida che non siano null e che siano corrette e.g. (java.util.date) come valore in 1 bean ( in user data di nascita data di morte)
+
+   -validazione password nel senso di password e conferma password che devono essere uguali (sempre 2 attributi user)

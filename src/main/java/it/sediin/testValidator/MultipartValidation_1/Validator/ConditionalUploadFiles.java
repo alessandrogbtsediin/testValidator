@@ -1,4 +1,4 @@
-package it.sediin.testValidator.Validator;
+package it.sediin.testValidator.MultipartValidation_1.Validator;
 
 import javax.validation.Constraint;
 import javax.validation.Payload;
@@ -8,9 +8,9 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 @Target({ElementType.METHOD, ElementType.FIELD, ElementType.ANNOTATION_TYPE, ElementType.CONSTRUCTOR, ElementType.PARAMETER, ElementType.TYPE_USE})
-@Constraint(validatedBy = ConditionalUploadMultipleFilesValidator.class)
+@Constraint(validatedBy = ConditionalUploadFilesValidator.class)
 @Retention(RetentionPolicy.RUNTIME)
-public @interface ConditionalUploadMultipleFiles {
+public @interface ConditionalUploadFiles {
     String message() default  "default error";
     Class<?>[] groups() default {};
     Class<? extends Payload>[] payload() default {};

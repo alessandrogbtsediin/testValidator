@@ -1,15 +1,12 @@
-package it.sediin.testValidator.Controller;
+package it.sediin.testValidator.MultipartValidation_1.Controller;
 
 
-import it.sediin.testValidator.Entities.UploadFiles;
-import it.sediin.testValidator.Entities.User;
-import it.sediin.testValidator.Service.UploadFilesService;
-import it.sediin.testValidator.Validator.ConditionalUploadFiles;
-import it.sediin.testValidator.Validator.ConditionalUploadMultipleFiles;
+import it.sediin.testValidator.MultipartValidation_1.Service.UploadFilesService;
+import it.sediin.testValidator.MultipartValidation_1.Validator.ConditionalUploadFiles;
+import it.sediin.testValidator.MultipartValidation_1.Validator.ConditionalUploadMultipleFiles;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -36,7 +33,6 @@ public class UploadFilesController {
 
     @PostMapping("/uploadFC")
     public ResponseEntity<String> uploadFiles(@RequestParam("documents") @Valid @ConditionalUploadFiles MultipartFile documents) throws Exception {
-
         try {
             fileUploadService.store(documents);
             return ResponseEntity.ok("Files uploaded successfully!");
@@ -47,7 +43,6 @@ public class UploadFilesController {
 
     @PostMapping("/uploadFCMulti")
     public ResponseEntity<String> uploadFilesMulti(@RequestParam("documents") @Valid @ConditionalUploadMultipleFiles MultipartFile[] documents) throws Exception {
-
         try {
             fileUploadService.storeMultipleFiles(documents);
             return ResponseEntity.ok("Files uploaded successfully!");
@@ -57,12 +52,10 @@ public class UploadFilesController {
     }
 
 
-
-
-
-
-
 }
+
+
+
 
 
 //    @PostMapping("/uploadFC")

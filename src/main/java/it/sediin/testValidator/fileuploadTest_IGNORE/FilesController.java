@@ -1,12 +1,10 @@
-package it.sediin.testValidator.fileuploadTest;
+package it.sediin.testValidator.fileuploadTest_IGNORE;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import it.sediin.testValidator.FileInfo;
-import it.sediin.testValidator.ResponseMessage;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.Resource;
 import org.springframework.http.HttpHeaders;

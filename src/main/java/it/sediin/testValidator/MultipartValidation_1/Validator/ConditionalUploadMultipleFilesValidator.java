@@ -1,5 +1,6 @@
-package it.sediin.testValidator.Validator;
+package it.sediin.testValidator.MultipartValidation_1.Validator;
 
+import it.sediin.testValidator.MultipartValidation_1.Validator.ConditionalUploadMultipleFiles;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.validation.ConstraintValidator;
@@ -11,7 +12,9 @@ public class ConditionalUploadMultipleFilesValidator implements ConstraintValida
                 || contentType.equals("application/pdf")
                 || contentType.equals("image/png")
                 || contentType.equals("image/jpg")
-                || contentType.equals("image/jpeg");
+                || contentType.equals("image/jpeg")
+                || contentType.equals("text/plain")// FILE TXT MESSI X CONTROLLO 0KB
+                ;
     }
 
     @Override
@@ -28,6 +31,15 @@ public class ConditionalUploadMultipleFilesValidator implements ConstraintValida
                     .addConstraintViolation();
                 result = false;
             }
+
+            if (m.isEmpty()) {
+                context.buildConstraintViolationWithTemplate(m.getOriginalFilename() + " IS EMPTY")
+                        .addPropertyNode("documents")
+                        .addConstraintViolation();
+                result = false;
+            }
+
+
         }
             return result;
             }
@@ -86,8 +98,8 @@ public class ConditionalUploadMultipleFilesValidator implements ConstraintValida
 //
 //package it.sediin.testValidator.Validator;
 //
-//        import it.sediin.testValidator.Entities.UploadFiles;
-//        import it.sediin.testValidator.Entities.User;
+//        import it.sediin.testValidator.MultipartValidation_1.Entities.UploadFiles;
+//        import it.sediin.testValidator.UserValidation_1.Entities.User;
 //        import org.springframework.web.multipart.MultipartFile;
 //
 //        import javax.validation.ConstraintValidator;

@@ -1,6 +1,6 @@
-package it.sediin.testValidator.Entities;
+package it.sediin.testValidator.MultipartValidation_1.Entities;
 
-import it.sediin.testValidator.Validator.ConditionalUploadFiles;
+import it.sediin.testValidator.MultipartValidation_1.Validator.ConditionalUploadFiles;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 import org.springframework.web.multipart.MultipartFile;

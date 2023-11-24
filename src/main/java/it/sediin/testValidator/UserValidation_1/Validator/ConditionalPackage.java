@@ -1,4 +1,4 @@
-package it.sediin.testValidator.Validator;
+package it.sediin.testValidator.UserValidation_1.Validator;
 
 import java.lang.annotation.*;
 import javax.validation.*;

@@ -1,4 +1,4 @@
-package it.sediin.testValidator;
+package it.sediin.testValidator.fileuploadTest_IGNORE;
 
 public class ResponseMessage {
     private String message;

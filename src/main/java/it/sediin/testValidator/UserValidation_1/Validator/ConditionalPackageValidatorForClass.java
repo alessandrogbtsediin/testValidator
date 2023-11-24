@@ -1,6 +1,7 @@
-package it.sediin.testValidator.Validator;
+package it.sediin.testValidator.UserValidation_1.Validator;
 
-import it.sediin.testValidator.Entities.User;
+import it.sediin.testValidator.UserValidation_1.Entities.User;
+import it.sediin.testValidator.UserValidation_1.Validator.ConditionalPackage;
 
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;

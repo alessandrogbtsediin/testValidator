@@ -1,6 +1,6 @@
-package it.sediin.testValidator.Entities;
+package it.sediin.testValidator.UserValidation_1.Entities;
 
-import it.sediin.testValidator.Validator.ConditionalPackage;
+import it.sediin.testValidator.UserValidation_1.Validator.ConditionalPackage;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 import org.springframework.web.multipart.MultipartFile;

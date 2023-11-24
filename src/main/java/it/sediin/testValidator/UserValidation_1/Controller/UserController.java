@@ -1,12 +1,10 @@
-package it.sediin.testValidator.Controller;
-import it.sediin.testValidator.Entities.User;
+package it.sediin.testValidator.UserValidation_1.Controller;
+import it.sediin.testValidator.UserValidation_1.Entities.User;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.multipart.MultipartFile;
 
 import javax.validation.Valid;
 import java.util.HashMap;

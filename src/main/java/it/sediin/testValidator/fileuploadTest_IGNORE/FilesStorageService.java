@@ -1,4 +1,4 @@
-package it.sediin.testValidator.fileuploadTest;
+package it.sediin.testValidator.fileuploadTest_IGNORE;
 
 import java.nio.file.Path;
 import java.util.stream.Stream;
