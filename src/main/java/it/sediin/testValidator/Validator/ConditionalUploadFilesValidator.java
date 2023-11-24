@@ -1,5 +1,6 @@
 package it.sediin.testValidator.Validator;
 
+import it.sediin.testValidator.Entities.MultiPartFileDTO;
 import it.sediin.testValidator.Entities.UploadFiles;
 import it.sediin.testValidator.Entities.User;
 import org.springframework.web.multipart.MultipartFile;
@@ -7,7 +8,7 @@ import org.springframework.web.multipart.MultipartFile;
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
 
-public class ConditionalUploadFilesValidator implements ConstraintValidator<ConditionalUploadFiles, MultipartFile> {
+public class ConditionalUploadFilesValidator implements ConstraintValidator<ConditionalUploadFiles, MultiPartFileDTO> {
     private boolean isSupportedContentType(String contentType) {
         return contentType.equals("text/xml")
                 || contentType.equals("application/pdf")
@@ -17,19 +18,17 @@ public class ConditionalUploadFilesValidator implements ConstraintValidator<Cond
     }
 
     @Override
-    public boolean isValid(MultipartFile multipartFiles, ConstraintValidatorContext context) {
-
-
+    public boolean isValid(MultiPartFileDTO multiPartFileDTO, ConstraintValidatorContext context) {
 
         context.disableDefaultConstraintViolation();
 
             boolean result = true;
 
-            String type = multipartFiles.getContentType();
+            String type = multiPartFileDTO.getFile().getContentType();
 
 //            assert type  != null;
             if (type==null || !isSupportedContentType(type)) {
-                context.buildConstraintViolationWithTemplate(multipartFiles.getOriginalFilename()+" HAS INCORRECT FILE TYPE")
+                context.buildConstraintViolationWithTemplate(multiPartFileDTO.getFile().getOriginalFilename()+" HAS INCORRECT FILE TYPE")
                     .addPropertyNode("documents")
                     .addConstraintViolation();
                 result = false;

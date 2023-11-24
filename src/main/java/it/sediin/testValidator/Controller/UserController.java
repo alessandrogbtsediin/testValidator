@@ -1,5 +1,6 @@
 package it.sediin.testValidator.Controller;
 import it.sediin.testValidator.Entities.User;
+import it.sediin.testValidator.Validator.ConditionalUploadFiles;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.ModelAttribute;
