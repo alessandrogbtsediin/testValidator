@@ -15,6 +15,25 @@ public class Patient {
 
     private Date dischargeDate;
 
+    private String password;
+
+    private String passwordMatch;
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public String getPasswordMatch() {
+        return passwordMatch;
+    }
+
+    public void setPasswordMatch(String passwordMatch) {
+        this.passwordMatch = passwordMatch;
+    }
 
     public Date getAdmissionDate() {
         return admissionDate;

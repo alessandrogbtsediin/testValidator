@@ -31,6 +31,11 @@ public class ConditionalPackageValidatorForClass implements ConstraintValidator<
 
     @Override
     public boolean isValid(User user, ConstraintValidatorContext context) {
+
+        if (user == null) {
+            return false;
+        }
+
         boolean isValid = true;
         if (user.getHasBought()) {
             if (user.getAddress() == null || user.getAddress().isEmpty()) {
